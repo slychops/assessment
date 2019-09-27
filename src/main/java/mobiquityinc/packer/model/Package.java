@@ -3,6 +3,7 @@ package mobiquityinc.packer.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Package {
 
@@ -24,5 +25,25 @@ public class Package {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Package aPackage = (Package) o;
+        return weight.equals(aPackage.weight) &&
+                items.equals(aPackage.items);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(weight, items);
+    }
+
+    @Override
+    public String toString() {
+        return "Package{" +
+                "weight=" + weight +
+                ", items=" + items +
+                '}';
+    }
 }

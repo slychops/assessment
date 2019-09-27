@@ -42,4 +42,13 @@ public class PackageItem {
     public int hashCode() {
         return Objects.hash(index, weight, cost);
     }
+
+    @Override
+    public String toString() {
+        return "PackageItem{" +
+                "index=" + index +
+                ", weight=" + weight +
+                ", cost=" + cost +
+                '}';
+    }
 }

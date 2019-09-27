@@ -19,25 +19,32 @@ public class PackerService {
     public PackerService() {
     }
 
-    public String packPackage(String filePath) {
+    public void packPackage(String filePath) {
         FileReader reader = new FileReader();
         PackageParser parser = new PackageParser();
         List<Package> packages = new ArrayList<>();
-        StringBuilder packagesToString = new StringBuilder();
+        StringBuilder packagesToString;
 
         for (String s: reader.getFile(filePath)) {
             packages.add(parser.parseLine(s));
         }
 
         for (Package aPackage: packages) {
-            Package tempPackage = packPackage(aPackage);
-            for (PackageItem item: tempPackage.getItems()) {
+            packagesToString = new StringBuilder();
+            for (PackageItem item: packPackage(aPackage).getItems()) {
                 packagesToString.append(item.getIndex());
                 packagesToString.append(", ");
             }
+
+            if (packagesToString.lastIndexOf(", ") < 0) {
+                packagesToString.append("-");
+            } else if (packagesToString.lastIndexOf(", ") > 0) {
+                packagesToString.replace(packagesToString.lastIndexOf(", "), packagesToString.lastIndexOf(", ") + 2, "");
+            }
+            System.out.println(packagesToString.toString());
+
         }
 
-        return packagesToString.toString();
     }
 
 

@@ -30,8 +30,6 @@ public class PackerServiceTest {
         Package optimalPackage = packerService.packPackage(unsortedPackage);
 
         assertEquals(expectedPackage, optimalPackage);
-
-
     }
 
 

@@ -1,9 +1,12 @@
 package mobiquityinc.packer;
 
+import mobiquityinc.packer.io.FileReader;
+import mobiquityinc.packer.io.PackageParser;
 import mobiquityinc.packer.model.Package;
 import mobiquityinc.packer.model.PackageItem;
 import mobiquityinc.packer.validation.Validator;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +18,29 @@ public class PackerService {
 
     public PackerService() {
     }
+
+    public String packPackage(String filePath) {
+        FileReader reader = new FileReader();
+        PackageParser parser = new PackageParser();
+        List<Package> packages = new ArrayList<>();
+        StringBuilder packagesToString = new StringBuilder();
+
+        for (String s: reader.getFile(filePath)) {
+            packages.add(parser.parseLine(s));
+        }
+
+        for (Package aPackage: packages) {
+            Package tempPackage = packPackage(aPackage);
+            for (PackageItem item: tempPackage.getItems()) {
+                packagesToString.append(item.getIndex());
+                packagesToString.append(", ");
+            }
+        }
+
+        return packagesToString.toString();
+    }
+
+
 
     public Package packPackage(Package unsortedPackage) {
         int nItems = unsortedPackage.getItems().size();

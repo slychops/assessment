@@ -1,6 +1,7 @@
 package mobiquityinc.packer.model;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class PackageItem {
 
@@ -25,5 +26,20 @@ public class PackageItem {
         this.index = index;
         this.weight = weight;
         this.cost = cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PackageItem item = (PackageItem) o;
+        return index == item.index &&
+                weight.equals(item.weight) &&
+                cost.equals(item.cost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(index, weight, cost);
     }
 }

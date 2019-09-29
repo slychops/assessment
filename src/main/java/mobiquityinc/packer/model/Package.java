@@ -1,9 +1,7 @@
 package mobiquityinc.packer.model;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Package {
 

@@ -6,6 +6,7 @@ import mobiquityinc.packer.model.PackageItem;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,6 +26,7 @@ public class PackageParser {
         Package aPackage = parsePackage(line);
         aPackage.getItems().addAll(parseItems(line));
 
+        Collections.sort(aPackage.getItems()); //This is so that when we run our Knapsack algorithm it returns us the lightest possible outcome
         return aPackage;
     }
 
@@ -50,4 +52,6 @@ public class PackageParser {
         String weightString = matcher.group(1);
         return new Package(new BigDecimal(weightString), new ArrayList<>());
     }
+
+
 }

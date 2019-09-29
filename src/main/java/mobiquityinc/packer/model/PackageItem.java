@@ -3,7 +3,7 @@ package mobiquityinc.packer.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class PackageItem {
+public class PackageItem implements Comparable<PackageItem> {
 
     private final int index;
     private final BigDecimal weight;
@@ -50,5 +50,12 @@ public class PackageItem {
                 ", weight=" + weight +
                 ", cost=" + cost +
                 '}';
+    }
+
+    @Override
+    public int compareTo(PackageItem item) {
+        PackageItem compareItem = ((PackageItem) item);
+
+        return (this.weight.intValue() - compareItem.weight.intValue());
     }
 }

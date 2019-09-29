@@ -10,6 +10,7 @@ public class Package {
 
     public Package(BigDecimal weight, List<PackageItem> items) {
 
+
         this.weight = weight;
         this.items = items;
     }

@@ -25,7 +25,7 @@ public class Validator {
         }
     }
 
-    public void checkItem(PackageItem item) {
+    void checkItem(PackageItem item) {
 
         checkCondition(item.getWeight().compareTo(MAX_ITEM_WEIGHT) <= 0, "Maximum item weight too large.");
         checkCondition(item.getCost().compareTo(MAX_ITEM_COST) <= 0, "Maximum item cost too large.");

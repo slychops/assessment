@@ -2,12 +2,13 @@ package mobiquityinc.packer;
 
 import mobiquityinc.packer.exception.APIException;
 
-public class Packer {
+public abstract class Packer{
     private static PackerService service = new PackerService();
 
     public static String pack(String filePath) throws APIException {
 
-        service.packPackage(filePath);
-        return null;
+        System.out.println(service.packPackage(filePath));
+
+        return service.packPackage(filePath);
     }
 }
